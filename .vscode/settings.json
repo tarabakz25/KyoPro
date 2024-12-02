@@ -1,0 +1,21 @@
+{
+  "code-runner.executorMap": {
+    "cpp": "cd $dir && g++ -std=c++17 $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt"
+  },
+  "code-runner.clearPreviousOutput": true,
+  "code-runner.runInTerminal": true,
+  "code-runner.saveFileBeforeRun": true,
+  "lldb.launch.expressions": "native",
+  "C_Cpp.default.compilerPath": "/usr/bin/gcc",
+  "files.associations": {
+    "*.py": "python",
+    "*.html": "html",
+    "*.css": "css",
+    "*.js": "javascript",
+    "iostream": "cpp",
+    "ostream": "cpp",
+    "charconv": "cpp"
+  },
+  "C_Cpp.errorSquiggles": "disabled",
+  "editor.fontFamily": "\"Anonymous Pro\"",
+}

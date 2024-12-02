@@ -1,0 +1,42 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "clang++ build active file",
+            "command": "clang++",
+            "args": [
+                "-std=c++14",
+                "-stdlib=libc++",
+                "-x",
+                "c++",
+                "-Wall",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}",
+                "--debug"
+            ],
+            "group": "build"
+        },
+        {
+            "label": "CheckTestCase",
+            "type": "shell",
+            "command": "source venv/bin/activate && cd ${fileDirname} && g++ -o ./main.out main.cpp && oj test -c \"./main.out\" -d ./tests/",
+            "presentation": {
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+            }
+        },
+        {
+            "label": "SubmitCode",
+            "type": "shell",
+            "command": "cd ${fileDirname} && acc submit ${fileBasename}",
+            "presentation": {
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+            }
+        }
+    ]
+}
