@@ -1,39 +1,39 @@
 #include <bits/stdc++.h>
-using namespace std;
+#include <chrono>
 
-#define rep(i, n) for(int i = 0; i < n; i++)
+using namespace std;
+using ll = long long;
+
+#define REP(i, n) for (ll i = 0; i < n; i++)
+#define REP2(i, a, n) for (ll i = a; i < n; i++)
+#define REPR(i, n) for (ll i = n; i >= 0; i--)
 
 int main()
 {
-    int n;
-    cin >> n;
+  ll n, k;
+  cin >> n >> k;
 
-    string s;
-    cin >> s;
+  const ll MOD = 1000000000;
+  vector<ll> a(n+1);
 
-    string key = "";
-    for(int i = 1; i < n / 2; i ++){
-        if(i % s.length() == 0){
-            key = "";
-            rep(j, s.length()) key += s[j];
-        }
-        else continue;
+  if(n <= k){
+    cout << 1 << endl;
+    return 0;
+  }
 
-        string t = s;
+  // 初期値の設定
+  for(ll i = 0; i < k; i++) {
+    a[i] = 1;
+  }
 
-        while(1){
-            string o;
-            rep(k, i) o += t[k];
+  // 漸化式の計算（累積和を使用）
+  ll sum = k;
+  for(ll i = k; i <= n; i++) {
+    a[i] = sum % MOD;
+    sum = (sum - a[i-k] + a[i]) % MOD;
+    if(sum < 0) sum += MOD; // MODで割った余りが負になるのを防ぐ
+  }
 
-            if(o == key) t.erase(t.begin(), t.begin() + i);
-            else break;
-
-            if(t.length() == 0){
-                cout << "Yes" << endl;
-                return 0;
-            }
-        }
-    }
-
-    cout << "No" << endl;
+  cout << a[n] << endl;
+  return 0;
 }
